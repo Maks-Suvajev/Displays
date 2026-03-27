@@ -6,6 +6,12 @@ set(CMAKE_AUTORCC ON)
 add_library(DisplaysLib
     source/TextureDisplay.cpp
     source/TextureDisplay.h
+	source/ShaderSourceDisplay.cpp
+    source/ShaderSourceDisplay.h
+    source/ShaderCompiledDisplay.cpp
+    source/ShaderCompiledDisplay.h
+    source/ShaderDisplay.cpp
+    source/ShaderDisplay.h
     ${CORE_MOC_FILES}
 ) 
 

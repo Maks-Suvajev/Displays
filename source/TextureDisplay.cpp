@@ -3,7 +3,8 @@
 TextureDisplay::TextureDisplay(gfx::TextureManager* textureManager, QWidget* parent)
     : Display<gfx::TextureManager, TextureModel>(parent)
 {
-    init(textureManager, std::string(title));
+    init(textureManager, std::string(titleTextureDisplay));
+    AddDirNavigationPanel(m_mainLayout.get());
 }
 
 void TextureDisplay::createButtonPanel(QHBoxLayout* parentLayout)

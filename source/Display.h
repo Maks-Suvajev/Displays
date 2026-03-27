@@ -8,10 +8,11 @@
 #include <QVBoxLayout>
 #include <QListView>
 #include <QPushbutton>
+#include <QLineEdit>
+#include <QFileDialog>
+#include <QDesktopServices>
+
 #include "UIColours.h"
-
-
-
 
 constexpr int constTitleFontSize =  15;
 constexpr int constSpacing =  15;
@@ -34,12 +35,18 @@ class Display : public QWidget
         // Interface creation
         void createTitle(std::string title, QLayout* parentLayout);
         void createListViewWithControls(Tmanager* manager, QVBoxLayout* parentLayout);
+
         void addCurrDirectoryDisplay(QVBoxLayout* parentLayout);
         void addChangeDirectoryButton(QVBoxLayout* parentLayout);
+        void AddDirNavigationPanel(QLayout* parentLayout);
+
         virtual void createButtonPanel(QHBoxLayout* parentLayout) = 0;
 
         template<typename FuncType>
         void addButtonToPanel(QLayout* layout, QString label, FuncType function);
+
+        template<typename FuncType>
+        void addButtonToPanelWithTextInput(QLayout* layout, QString label, FuncType function);
 
         // Styling (TODO: Replace with QSS)
         void setButtonColours(QWidget* widget);
@@ -67,7 +74,6 @@ void Display<Tmanager, Tmodel>::init(Tmanager* manager, std::string title)
     createTitle(title, m_mainLayout.get());
 
     createListViewWithControls(manager, m_mainLayout.get());
-
 }
 
 template<typename Tmanager, typename Tmodel>
@@ -98,9 +104,6 @@ void Display<Tmanager, Tmodel>::createListViewWithControls(Tmanager* manager, QV
 
     layout->addWidget(m_managerView.get(), 1);
 
-    addCurrDirectoryDisplay(layout);
-    addChangeDirectoryButton(layout);
-
     QHBoxLayout* viewWithButtonPanel = new QHBoxLayout();
     viewWithButtonPanel->addLayout(layout);
 
@@ -108,6 +111,20 @@ void Display<Tmanager, Tmodel>::createListViewWithControls(Tmanager* manager, QV
 
     parentLayout->addLayout(viewWithButtonPanel);
 }
+
+template<typename Tmanager, typename Tmodel>
+void Display<Tmanager, Tmodel>::AddDirNavigationPanel(QLayout* parentLayout)
+{
+    QWidget* container = new QWidget();
+    QVBoxLayout* layout = new QVBoxLayout();
+    container->setLayout(layout);
+
+    addCurrDirectoryDisplay(layout);
+    addChangeDirectoryButton(layout);
+
+    parentLayout->addWidget(container);
+}
+
 
 template<typename Tmanager, typename Tmodel>
 void Display<Tmanager, Tmodel>::addCurrDirectoryDisplay(QVBoxLayout* parentLayout)
@@ -148,6 +165,35 @@ void Display<Tmanager, Tmodel>::addButtonToPanel(QLayout* layout, QString label,
     button->setText(label);
     connect(button, &QPushButton::clicked, this, function);
     layout->addWidget(button);
+}
+
+template<typename Tmanager, typename Tmodel>
+template<typename FuncType>
+void Display<Tmanager, Tmodel>::addButtonToPanelWithTextInput(QLayout* layout, QString label, FuncType function)
+{
+    QHBoxLayout* inputLayout = new QHBoxLayout();
+    inputLayout->setSpacing(0);
+    inputLayout->setContentsMargins(0,0,0,0);
+
+    QPushButton* button = new QPushButton(label);
+    setButtonColours(button);
+    button->setText(label);
+
+    QLineEdit* nameInput = new QLineEdit();
+
+    inputLayout->addWidget(nameInput, 1);
+    inputLayout->addWidget(button, 0);
+
+    connect(button, &QPushButton::clicked, this, [function, nameInput](){
+        function(nameInput->text());
+        nameInput->clear();
+    });
+
+    QWidget* container = new QWidget();
+    container->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
+    container->setLayout(inputLayout);
+        
+    layout->addWidget(container);
 }
 
 template<typename Tmanager, typename Tmodel>

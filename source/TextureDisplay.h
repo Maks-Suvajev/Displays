@@ -15,7 +15,7 @@
 #include "TextureModel.h"
 #include "TextureManager.h"
 
-constexpr std::string_view title =  "Texture Loader";
+constexpr std::string_view titleTextureDisplay =  "Texture Loader";
 
 class TextureDisplay : public Display<gfx::TextureManager, TextureModel>
 {
