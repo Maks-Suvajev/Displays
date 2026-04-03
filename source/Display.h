@@ -40,6 +40,8 @@ class Display : public QWidget
         void addChangeDirectoryButton(QVBoxLayout* parentLayout);
         void AddDirNavigationPanel(QLayout* parentLayout);
 
+        Tmodel* getModel();
+
         virtual void createButtonPanel(QHBoxLayout* parentLayout) = 0;
 
         template<typename FuncType>
@@ -57,6 +59,12 @@ class Display : public QWidget
         std::unique_ptr<QListView>      m_managerView;
         std::unique_ptr<Tmodel>         m_model;
 };
+
+template<typename Tmanager, typename Tmodel>
+Tmodel* Display<Tmanager, Tmodel>::getModel()
+{
+    return m_model.get();
+}
 
 template<typename Tmanager, typename Tmodel>
 Display<Tmanager, Tmodel>::Display(QWidget* parent)
@@ -96,7 +104,7 @@ void Display<Tmanager, Tmodel>::createListViewWithControls(Tmanager* manager, QV
     QVBoxLayout* layout = new QVBoxLayout();
 
     m_managerView = std::make_unique<QListView>(this);
-    m_model = std::make_unique<Tmodel>(manager, this);
+    m_model = std::make_unique<Tmodel>(manager, nullptr);
 
     m_managerView->setModel(m_model.get());
     m_managerView->setMouseTracking(true);
