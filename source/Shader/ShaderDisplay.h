@@ -6,6 +6,9 @@
 
 #include "ShaderManager.h"
 
+namespace gui
+{
+
 constexpr std::string_view titleShaderDisplay =  "Shader Manager";
 
 class ShaderDisplay : public QWidget
@@ -21,5 +24,6 @@ class ShaderDisplay : public QWidget
         std::unique_ptr<ShaderCompiledDisplay> m_compiledDisplay;
 };
 
+}
 
 #endif

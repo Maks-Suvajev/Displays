@@ -5,6 +5,9 @@
 #include "ShaderCompiledModel.h"
 #include "ShaderManager.h"
 
+namespace gui
+{
+
 constexpr std::string_view titleShaderCompiled =  "Compiled Shader Programs";
 
 class ShaderCompiledDisplay : public Display<gfx::ShaderManager, ShaderCompiledModel>
@@ -27,5 +30,6 @@ class ShaderCompiledDisplay : public Display<gfx::ShaderManager, ShaderCompiledM
 
 };
 
+}
 
 #endif

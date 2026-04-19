@@ -1,5 +1,8 @@
 #include "ShaderCompiledDisplay.h"
 
+namespace gui
+{
+
 ShaderCompiledDisplay::ShaderCompiledDisplay(gfx::ShaderManager* shaderManager, QWidget* parent)
     : Display<gfx::ShaderManager, ShaderCompiledModel>(parent)
 {
@@ -43,4 +46,6 @@ void ShaderCompiledDisplay::refreshCompiled()
 void ShaderCompiledDisplay::shaderProgramLinked()
 {
     refreshCompiled();
+}
+
 }

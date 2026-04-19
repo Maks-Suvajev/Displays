@@ -15,6 +15,9 @@
 #include "TextureModel.h"
 #include "TextureManager.h"
 
+namespace gui
+{
+
 constexpr std::string_view titleTextureDisplay =  "Texture Loader";
 
 class TextureDisplay : public Display<gfx::TextureManager, TextureModel>
@@ -35,6 +38,6 @@ class TextureDisplay : public Display<gfx::TextureManager, TextureModel>
         void createButtonPanel(QHBoxLayout* parentLayout) override;
 
 };
-
+}
 
 #endif

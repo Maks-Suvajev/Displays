@@ -1,5 +1,8 @@
 #include "ShaderDisplay.h"
 
+namespace gui
+{
+
 ShaderDisplay::ShaderDisplay(gfx::ShaderManager* shaderManager, QWidget* parent)
     : QWidget(parent)
 {
@@ -25,4 +28,6 @@ ShaderDisplay::ShaderDisplay(gfx::ShaderManager* shaderManager, QWidget* parent)
     m_layout->addWidget(m_compiledDisplay.get());
 
     connect(m_sourceDisplay.get(), &ShaderSourceDisplay::shaderProgramLinked, m_compiledDisplay.get(), &ShaderCompiledDisplay::shaderProgramLinked);
+}
+
 }

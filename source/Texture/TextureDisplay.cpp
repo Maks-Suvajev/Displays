@@ -1,5 +1,8 @@
 #include "TextureDisplay.h"
 
+namespace gui
+{
+
 TextureDisplay::TextureDisplay(gfx::TextureManager* textureManager, QWidget* parent)
     : Display<gfx::TextureManager, TextureModel>(parent)
 {
@@ -69,3 +72,4 @@ void TextureDisplay::unloadAllTexturesPressed()
     }
 }
 
+}

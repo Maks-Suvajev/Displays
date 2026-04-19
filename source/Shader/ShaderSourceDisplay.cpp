@@ -1,5 +1,8 @@
 #include "ShaderSourceDisplay.h"
 
+namespace gui
+{
+
 ShaderSourceDisplay::ShaderSourceDisplay(gfx::ShaderManager* shaderManager, QWidget* parent)
     : Display<gfx::ShaderManager, ShaderSourceModel>(parent)
 {
@@ -94,4 +97,6 @@ void ShaderSourceDisplay::linkIntoProgram(const std::string& name)
     emit m_model->dataChanged(selectedIndices[0], selectedIndices[0]);
     emit m_model->dataChanged(selectedIndices[1], selectedIndices[1]);
     emit shaderProgramLinked();
+}
+
 }

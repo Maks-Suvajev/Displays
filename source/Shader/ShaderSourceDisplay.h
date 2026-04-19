@@ -5,6 +5,9 @@
 #include "ShaderSourceModel.h"
 #include "ShaderManager.h"
 
+namespace gui
+{
+
 constexpr std::string_view titleShaderSource =  "Shader Sources";
 
 class ShaderSourceDisplay : public Display<gfx::ShaderManager, ShaderSourceModel>
@@ -30,5 +33,5 @@ class ShaderSourceDisplay : public Display<gfx::ShaderManager, ShaderSourceModel
         void createButtonPanel(QHBoxLayout* parentLayout) override;
 };
 
-
+}
 #endif

@@ -12,20 +12,27 @@ add_library(DisplaysLib
     source/Shader/ShaderCompiledDisplay.h
     source/Shader/ShaderDisplay.cpp
     source/Shader/ShaderDisplay.h
+    source/SceneModel/SceneModelDisplay.cpp
+    source/SceneModel/SceneModelDisplay.h
     ${CORE_MOC_FILES}
 ) 
 
+
 target_include_directories(DisplaysLib 
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source/Texture
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source/Shader
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source/Material
+    PUBLIC 
+        ${CMAKE_CURRENT_SOURCE_DIR}/source
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/Texture
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/Shader
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/Material
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/SceneModel
 )
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGLWidgets)
 
 target_link_libraries(DisplaysLib
     PUBLIC 
         ModelsLib
         Qt6::Widgets
+        Qt6::OpenGLWidgets
+        UICommonLib
 )
