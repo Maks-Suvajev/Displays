@@ -14,6 +14,8 @@ add_library(DisplaysLib
     source/Shader/ShaderDisplay.h
     source/SceneModel/SceneModelDisplay.cpp
     source/SceneModel/SceneModelDisplay.h
+    source/Entity/EntityModelDisplay.cpp
+    source/Entity/EntityModelDisplay.h
     ${CORE_MOC_FILES}
 ) 
 
@@ -25,6 +27,7 @@ target_include_directories(DisplaysLib
         ${CMAKE_CURRENT_SOURCE_DIR}/source/Shader
         ${CMAKE_CURRENT_SOURCE_DIR}/source/Material
         ${CMAKE_CURRENT_SOURCE_DIR}/source/SceneModel
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/Entity
 )
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGLWidgets)

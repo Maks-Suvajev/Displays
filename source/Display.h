@@ -17,9 +17,6 @@
 namespace gui
 {
 
-constexpr int constTitleFontSize =  15;
-constexpr int constSpacing =  15;
-
 template<typename Tmanager, typename Tmodel>
 class Display : public QWidget
 {
