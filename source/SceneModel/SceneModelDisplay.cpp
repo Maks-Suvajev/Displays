@@ -4,7 +4,8 @@ namespace gui
 {
 
 SceneModelDisplay::SceneModelDisplay(gfx::SceneModelManager* sceneModelManager, QOpenGLWidget* viewport, QWidget* parent)
-    : m_viewport(viewport)
+    : Display<gfx::SceneModelManager, SceneModelModel>(parent), 
+      m_viewport(viewport)
 {
     init(sceneModelManager, std::string(titleSceneModelDisplay));
     AddDirNavigationPanel(m_mainLayout.get());

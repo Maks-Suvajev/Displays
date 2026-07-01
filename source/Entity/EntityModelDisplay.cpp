@@ -4,6 +4,7 @@ namespace gui
 {
 
 EntityModelDisplay::EntityModelDisplay(EntityManager* entityManager, QWidget* parent)
+    : QWidget(parent)
 {
     init(entityManager, std::string(titleEntityModelDisplay));
 }
@@ -42,6 +43,7 @@ void EntityModelDisplay::createTreeViewWithControls(EntityManager* entityManager
     m_managerView->setModel(m_model.get());
     m_managerView->setMouseTracking(true);
     m_managerView->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    m_managerView->setHeaderHidden(true);
 
     layout->addWidget(m_managerView.get(), 1);
 
